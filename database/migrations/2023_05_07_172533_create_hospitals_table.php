@@ -11,25 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('hospitals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->date('date_of_birth');
-            $table->double('age');
-            $table->enum('gender',['male','female']);
             $table->string('phone_number')->unique();
-            $table->string('ID_number')->unique(); // رقم الهوية 
             $table->string('address');
-            $table->foreignId('blood_group_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('role_id')->constrained();
-            $table->enum('status',['active','not_active']);
-            $table->rememberToken();
+            $table->enum('status', ['active', 'not_active']);
             $table->timestamps();
         });
-        /*******  تنساش تحدد الحجم و الطول لكل وحدة*****/
     }
 
     /**
@@ -37,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('hospitals');
     }
 };
